@@ -1,0 +1,26 @@
+{
+  "name": "coinmarketcap-scraper",
+  "version": "1.0.0",
+  "description": "Scrap data from coinmarketcap then convert them to json file",
+  "main": "index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asp143/coinmarketcap-scraper.git"
+  },
+  "author": "asp143",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asp143/coinmarketcap-scraper/issues"
+  },
+  "homepage": "https://github.com/asp143/coinmarketcap-scraper#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0"
+  }
+}
