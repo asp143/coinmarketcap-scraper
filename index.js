@@ -2,15 +2,20 @@ const axios = require('axios').default;
 const $ = require('cheerio');
 const _ = require('lodash');
 const fs = require('fs');
-const { coins } = require('./constants');
-const moment = require('moment');
 
-const file_path = `data/${Date.now()}.json`;
+const {
+    COINS,
+    DATA_PROPERTIES,
+    PREFIX_URL,
+    YEAR_TO_DATE_URL,
+    BASE_FILE_NAME
+} = require('./constants');
+const { getPercentDiff } = require('./utils');
 
-_.forEach(coins, (coin) => {
-    const url = `https://coinmarketcap.com/currencies/${coin}/historical-data/?start=${moment().startOf('year').format('YYYYMMDD')}&end=${moment().format('YYYYMMDD')}`;
+_.forEach(COINS, (coin) => {
+    
+    const url = `${PREFIX_URL}/currencies/${coin}/historical-data/${YEAR_TO_DATE_URL}`;
     const dataFormat = {};
-    const data_properties = ['date', 'open_price', 'high', 'low','close_price', 'volume', 'market_cap'];
     axios
         .get(url)
         .then((result) => {
@@ -24,16 +29,27 @@ _.forEach(coins, (coin) => {
             return Promise.resolve(table);
         })
         .then((tableData) => {
-            _.forEach(tableData, table => {
+            const JSON_DATA = _.map(tableData, table => {
                 for(let i = 0; i < table.data.length; i++) {
-                    dataFormat[data_properties[i]] = table.data[i];
+                    dataFormat[DATA_PROPERTIES[i]] = table.data[i];
                 }
-                //TODO: Improve this part
-                fs.appendFile(file_path, JSON.stringify(dataFormat) + "," + "\n" , function (err) {
-                    if (err) throw err;
-                });
-            })
-            console.log('Done fetching data from coinmarketcap');
+
+                dataFormat['diff_close_open'] = getPercentDiff(dataFormat.open_price, dataFormat.close_price);
+                // HACK
+                return JSON.parse(JSON.stringify(dataFormat))
+
+            });
+
+            return Promise.resolve(JSON_DATA);
+        })
+        .then((JSON_DATA) => {
+
+            fs
+                .writeFile(`data/${coin}-${BASE_FILE_NAME}`, JSON.stringify(JSON_DATA),
+                    function (err) {
+                        if (err) throw err;
+                    }
+                );
         })
         .catch(err => {
             throw err;

@@ -1,2 +1,3 @@
 # coinmarketcap-scraper
-To fetch historical data from coinmarketcap
+Scrapes the coinmarketcap website for data of each coins defined.
+Generates a JSON file for the data fetched.
