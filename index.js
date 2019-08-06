@@ -34,7 +34,7 @@ _.forEach(COINS, (coin) => {
                     dataFormat[DATA_PROPERTIES[i]] = table.data[i];
                 }
 
-                dataFormat['diff_close_open'] = getPercentDiff(dataFormat.close_price, dataFormat.open_price);
+                dataFormat['diff_close_open'] = getPercentDiff(dataFormat.open_price, dataFormat.close_price);
                 // HACK
                 return JSON.parse(JSON.stringify(dataFormat))
 
