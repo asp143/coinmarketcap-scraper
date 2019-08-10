@@ -1,6 +1,5 @@
 const axios = require('axios').default;
 const $ = require('cheerio');
-const _ = require('lodash');
 const fs = require('fs');
 
 const {
@@ -10,12 +9,15 @@ const {
     YEAR_TO_DATE_URL,
     BASE_FILE_NAME
 } = require('./constants');
+
 const { getPercentDiff } = require('./utils');
 
-_.forEach(COINS, (coin) => {
+
+COINS.forEach((coin) => {
     
     const url = `${PREFIX_URL}/currencies/${coin}/historical-data/${YEAR_TO_DATE_URL}`;
     const dataFormat = {};
+
     axios
         .get(url)
         .then((result) => {
@@ -29,7 +31,7 @@ _.forEach(COINS, (coin) => {
             return Promise.resolve(table);
         })
         .then((tableData) => {
-            const JSON_DATA = _.map(tableData, table => {
+            const JSON_DATA = tableData.map(table => {
                 for(let i = 0; i < table.data.length; i++) {
                     dataFormat[DATA_PROPERTIES[i]] = table.data[i];
                 }
