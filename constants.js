@@ -2,7 +2,7 @@
 const moment = require('moment');
 
 
-const COINS = ['ripple', 'dash', 'bitcoin', 'ethereum'];
+const COINS = ['ripple', 'dash', 'bitcoin', 'ethereum', 'tether', 'bitcoin-cash'];
 const DATA_PROPERTIES = ['date', 'open_price', 'high', 'low','close_price', 'volume', 'market_cap'];
 const PREFIX_URL = 'https://coinmarketcap.com';
 
