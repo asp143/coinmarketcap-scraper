@@ -54,6 +54,7 @@ COINS.forEach((coin) => {
                 );
         })
         .catch(err => {
+            console.log(err);
             throw err;
         });
 })
