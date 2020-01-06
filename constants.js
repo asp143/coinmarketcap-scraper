@@ -3,6 +3,7 @@ const moment = require('moment');
 
 
 const COINS = ['xrp', 'dash', 'bitcoin', 'ethereum', 'tether', 'bitcoin-cash'];
+
 const PREFIX_URL = 'https://web-api.coinmarketcap.com/v1/cryptocurrency/ohlcv/historical?';
 
 const YEAR_TO_DATE_URL = `time_end=${moment().valueOf()}&time_start=${moment().startOf('year').valueOf()}`;
