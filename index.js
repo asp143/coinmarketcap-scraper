@@ -3,7 +3,6 @@ const fs = require('fs');
 
 const {
     COINS,
-    DATA_PROPERTIES,
     PREFIX_URL,
     YEAR_TO_DATE_URL,
     BASE_FILE_NAME
@@ -20,13 +19,13 @@ const CreateFinalModel = async (quotes) => {
 };
 
 const WriteData = async (coin, data) => {
-        console.log('Saving Data to Data Folder');
-        fs
-            .writeFile(`data/${coin}-${BASE_FILE_NAME}`, JSON.stringify(data),
-                    function (err) {
-                        if (err) throw err;
-                    }
-            );
+    console.log('Saving Data to Data Folder');
+    fs
+        .writeFile(`data/${coin}-${BASE_FILE_NAME}`, JSON.stringify(data),
+                function (err) {
+                    if (err) throw err;
+                }
+        );
 };
 
 const initializeScript = async () => {
