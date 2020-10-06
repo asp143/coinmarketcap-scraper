@@ -1,6 +1,8 @@
 const axios = require('axios').default;
 const fs = require('fs');
 
+require('dotenv').config();
+
 const {
     COINS,
     PREFIX_URL,
