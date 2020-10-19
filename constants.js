@@ -1,12 +1,12 @@
 // External packages
-const moment = require('moment');
+const dayjs = require('dayjs');
 
 
 const COINS = ['xrp', 'dash', 'bitcoin', 'ethereum', 'tether', 'bitcoin-cash'];
 
 const PREFIX_URL = process.env.COINMARKET_CAP_LINK;
 
-const YEAR_TO_DATE_URL = `time_end=${moment().valueOf()}&time_start=${moment().startOf('year').valueOf()}`;
+const YEAR_TO_DATE_URL = `time_end=${dayjs().valueOf()}&time_start=${dayjs().startOf('year').valueOf()}`;
 
 const BASE_FILE_NAME = `${Date.now()}.json`;
 
