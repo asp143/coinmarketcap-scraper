@@ -19,7 +19,7 @@
   "homepage": "https://github.com/asp143/coinmarketcap-scraper#readme",
   "dependencies": {
     "axios": "^0.20.0",
-    "dayjs": "^1.9.3",
+    "dayjs": "^1.9.7",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security"
   }
